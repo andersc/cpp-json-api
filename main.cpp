@@ -17,20 +17,20 @@ int main() {
 
         auto lParsedJson = nlohmann::json::parse(rRequest.body);
 
-        nlohmann::json lResponce;
+        nlohmann::json lResponse;
 
         for (auto& [key, value] : lParsedJson.items()) {
             std::cout << key << " : " << value << "\n";
             if (key.compare("key1")) {
-                lResponce["key1"] = (uint64_t)value + 1;
+                lResponse["key1"] = (uint64_t)value + 1;
             }
             if (key.compare("key2")) {
-                lResponce["key2"] = (uint64_t)value + 1;
+                lResponse["key2"] = (uint64_t)value + 1;
             }
 
         }
 
-        rResponce.set_content(lResponce.dump(), "application/json");
+        rResponce.set_content(lResponse.dump(), "application/json");
     });
 
     svr.listen("0.0.0.0", 8080);
