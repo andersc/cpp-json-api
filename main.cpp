@@ -4,7 +4,6 @@
 #include <iostream>
 #include "json.h"
 #include "httplib.h"
-#include <string>
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -21,13 +20,12 @@ int main() {
 
         for (auto& [key, value] : lParsedJson.items()) {
             std::cout << key << " : " << value << "\n";
-            if (key.compare("key1")) {
+            if (key == "key1") {
                 lResponse["key1"] = (uint64_t)value + 1;
             }
-            if (key.compare("key2")) {
+            if (key == "key2") {
                 lResponse["key2"] = (uint64_t)value + 1;
             }
-
         }
 
         rResponce.set_content(lResponse.dump(), "application/json");
